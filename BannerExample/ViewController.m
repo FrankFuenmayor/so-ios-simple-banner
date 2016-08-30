@@ -8,20 +8,23 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController () <UINavigationControllerDelegate>
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.navigationController.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    
+    UIView *banner = [[UIView alloc] initWithFrame:CGRectMake(0, navigationController.navigationBar.frame.size.height + 10,
+                                                              viewController.view.bounds.size.width, 30)];
+    banner.backgroundColor = [UIColor blueColor];
+    
+    [viewController.view addSubview:banner];
 }
 
 @end
